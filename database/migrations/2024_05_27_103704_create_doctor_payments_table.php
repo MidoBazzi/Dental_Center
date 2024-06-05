@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('doctor_payments', function (Blueprint $table) {
             $table->id();
+            $table->date('date');
+            $table->integer('amount')->unsinged();
+            $table->foreignId("doctor_id")->constrained("doctors")->cascadeOnDelete();
             $table->timestamps();
         });
     }

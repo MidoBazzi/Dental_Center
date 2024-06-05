@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('material_payments', function (Blueprint $table) {
             $table->id();
+            $table->date('date');
+            $table->string('desc');
+            $table->integer('price');
             $table->timestamps();
         });
     }

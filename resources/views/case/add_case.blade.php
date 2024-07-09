@@ -8,6 +8,9 @@
     <script src="include-navbar.js" defer></script>
 </head>
 <body>
+    <header>
+        @include('layouts.navbar')
+    </header>
     <div id="navbar-container"></div>
     <main>
         <h1>Add Case</h1>

@@ -336,8 +336,8 @@ h2 {
                 <li class="dropdown">
                     <a href="javascript:void(0)" class="dropbtn">Cases</a>
                     <div class="dropdown-content">
-                        <a href="add_case.html">Add Case</a>
-                        <a href="cases_list.html">Cases List</a>
+                        <a href={{ route('cases.showadd') }}>Add Case</a>
+                        <a href={{ route('cases.showall') }}>Cases List</a>
                     </div>
                 </li>
                 <li class="dropdown">

@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\DentalCaseController;
 
 Route::get('/', [UserController::class, "index"])->name('index');
 
@@ -22,4 +23,9 @@ Route::controller(DoctorController::class)->group(function () {
 Route::controller(AppointmentController::class)->group(function () {
     Route::get('appointments', 'showall')->name("appointments.showall");
     Route::get('appointments/add', 'showadd')->name("appointments.showadd");
+});
+
+Route::controller(DentalCaseController::class)->group(function () {
+    Route::get('cases', 'showall')->name("cases.showall");
+    Route::get('cases/add', 'showadd')->name("cases.showadd");
 });

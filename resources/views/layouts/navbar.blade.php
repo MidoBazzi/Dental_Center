@@ -86,69 +86,23 @@ nav ul li a:hover, .dropdown:hover .dropbtn {
 .dropdown:hover .dropdown-content {
     display: block;
 }
-.container {
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    border-radius: 8px;
-}
-
-h2 {
-    text-align: center;
-    color: #333;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    color: #333;
-}
-
-.form-group input {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
-    color: #fff;
-    background-color: #00bfff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.btn:hover {
-    background-color: #0099cc;
-}
 
     </style>
 </head>
 <body>
     <div class="navbar">
         <div class="logo">
-            <img src="logo.png" alt="Dental Center Logo">
+            <img src={{asset('logo.png')}} alt="Dental Center Logo">
             <span>Dental Center</span>
         </div>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a href={{ route('index') }}>Home</a></li>
                 <li class="dropdown">
                     <a href="javascript:void(0)" class="dropbtn">Patients</a>
                     <div class="dropdown-content">
-                        <a href="add_patient.html">Add Patient</a>
-                        <a href="patients_list.html">Patients List</a>
+                        <a href={{ route('patients.showadd') }}>Add Patient</a>
+                        <a href={{ route('patients.showall') }}>Patients List</a>
                     </div>
                 </li>
                 <li class="dropdown">

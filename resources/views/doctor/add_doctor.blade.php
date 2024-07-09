@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Doctor</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="include-navbar.js" defer></script>
 </head>
 <body>
+    <header>
+        @include('layouts.navbar')
+    </header>
     <div class="container">
         <h2>Add Doctor</h2>
         <form>

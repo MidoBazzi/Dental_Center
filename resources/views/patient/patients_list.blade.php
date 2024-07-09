@@ -23,6 +23,9 @@
     </script>
 </head>
 <body>
+<header>
+    @include('layouts.navbar')
+</header>
     <main class="container">
         <h2>Patients List</h2>
         <section id="patient-list">

@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doctors List</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="include-navbar.js" defer></script>
     <script>
         function showDetails(name, phone, address, specialization, experience) {
             document.getElementById('details-name').innerText = name;
@@ -24,6 +22,9 @@
     </script>
 </head>
 <body>
+    <header>
+        @include('layouts.navbar')
+    </header>
     <main class="container">
         <h2>Doctors List</h2>
         <section id="patient-list">

@@ -26,9 +26,9 @@
     </style>
 </head>
 <body>
-    <header>
+
         @include('layouts.navbar')
-    </header>
+
     <div id="statistics">
         <div class="stat">
             <h2>Number of Patients This Month</h2>

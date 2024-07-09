@@ -8,6 +8,9 @@
     <script src="include-navbar.js" defer></script>
 </head>
 <body>
+    <header>
+        @include('layouts.navbar')
+    </header>
     <div id="navbar-container"></div>
     <main class="container">
         <h2>Add Appointment</h2>

@@ -329,8 +329,8 @@ h2 {
                 <li class="dropdown">
                     <a href="javascript:void(0)" class="dropbtn">Appointments</a>
                     <div class="dropdown-content">
-                        <a href="add_appointment.html">Add Appointment</a>
-                        <a href="appointments_list.html">Appointments List</a>
+                        <a href={{ route('appointments.showadd') }}>Add Appointment</a>
+                        <a href={{ route('appointments.showall') }}>Appointments List</a>
                     </div>
                 </li>
                 <li class="dropdown">

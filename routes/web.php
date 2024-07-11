@@ -13,6 +13,8 @@ Route::get('/', [UserController::class, "index"])->name('index');
 Route::controller(PatientController::class)->group(function () {
     Route::get('patients', 'showall')->name("patients.showall");
     Route::get('patients/add', 'showadd')->name("patients.showadd");
+    Route::post('patients/store', 'store')->name("patients.store");
+
 });
 
 Route::controller(DoctorController::class)->group(function () {

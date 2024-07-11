@@ -30,15 +30,13 @@
         <h2>Patients List</h2>
         <section id="patient-list">
             <ul>
+                @foreach ($patients as  $patient)
                 <li>
-                    <span>John Doe</span>
-                    <button onclick="showDetails('John Doe', '1234567890', '30', '123 Main St')">Details</button>
+                    <span>{{$patient->name}}</span>
+                    <button onclick="showDetails('{{$patient->name}}', '{{$patient->phone_num}}', '{{$patient->age}}', '{{$patient->address}}')">Details</button>
                 </li>
-                <li>
-                    <span>John Doe</span>
-                    <button onclick="showDetails('John Doe', '1234567890', '30', '123 Main St')">Details</button>
-                </li>
-                <!-- Add more dummy patients here -->
+                @endforeach
+
             </ul>
         </section>
         <div id="details-popup" class="popup">

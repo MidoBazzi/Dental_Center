@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('address');
             $table->integer('phone_num')->unique();
             $table->integer('age')->unsinged();
-            $table->integer('amount_due')->unsinged();
+            $table->integer('amount_due')->unsinged()->default(0);
 
 
             $table->timestamps();

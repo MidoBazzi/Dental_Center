@@ -15,4 +15,18 @@ class Patient extends Model
     {
         return $this->hasMany(Appointment::class);
     }
+
+
+    public function patientdata(): hasMany
+    {
+        return $this->hasMany(PatientData::class);
+    }
+
+
+    public function dentalcases(): hasMany
+    {
+        return $this->hasMany(Dentalcase::class);
+    }
+
+
 }

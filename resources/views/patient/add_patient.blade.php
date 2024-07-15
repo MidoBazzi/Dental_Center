@@ -15,22 +15,22 @@
             @csrf
             <div class="form-group">
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name" :value="old('name')">
+                <input type="text" id="name" name="name" value="{{old('name')}}">
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
             </div>
             <div class="form-group">
                 <label for="phone_num">Phone Number:</label>
-                <input type="text" id="phone_num" name="phone_num"  onkeypress="return isNumberKey(event)" :value="old('phone_num')">
+                <input type="text" id="phone_num" name="phone_num"  onkeypress="return isNumberKey(event)" value="{{old('phone_num')}}">
                 <x-input-error :messages="$errors->get('phone_num')" class="mt-2" />
             </div>
             <div class="form-group">
                 <label for="age">Age:</label>
-                <input type="text" id="age" name="age"  onkeypress="return isNumberKey(event)" :value="old('age')">
+                <input type="text" id="age" name="age"  onkeypress="return isNumberKey(event)" value="{{old('age')}}">
                 <x-input-error :messages="$errors->get('age')" class="mt-2" />
             </div>
             <div class="form-group">
                 <label for="address">Address:</label>
-                <input type="text" id="address" name="address" :value="old('address')">
+                <input type="text" id="address" name="address" value="{{old('address')}}">
                 <x-input-error :messages="$errors->get('address')" class="mt-2" />
             </div>
             <button type="submit" class="btn">Add Patient</button>

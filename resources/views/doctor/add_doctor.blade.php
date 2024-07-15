@@ -163,38 +163,38 @@
             @csrf
             <div class="form-group">
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name">
+                <input type="text" id="name" name="name" value="{{old('name')}}">
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
 
             </div>
             <div class="form-group">
                 <label for="phone_num">Phone Number:</label>
-                <input type="text" id="phone_num" name="phone_num" onkeypress="return isNumberKey(event)">
+                <input type="text" id="phone_num" name="phone_num" onkeypress="return isNumberKey(event)" value="{{old('phone_num')}}">
                 <x-input-error :messages="$errors->get('phone_num')" class="mt-2" />
 
             </div>
             <div class="form-group">
                 <label for="address">Address:</label>
-                <input type="text" id="address" name="address">
+                <input type="text" id="address" name="address" value="{{old('address')}}">
                 <x-input-error :messages="$errors->get('address')" class="mt-2" />
 
             </div>
             <div class="form-group">
                 <label for="speciality">Specialization:</label>
-                <input type="text" id="speciality" name="speciality">
+                <input type="text" id="speciality" name="speciality" value="{{old('speciality')}}">
                 <x-input-error :messages="$errors->get('speciality')" class="mt-2" />
 
             </div>
             <div class="form-group">
                 <label for="age">Age (years):</label>
-                <input type="number" id="age" name="age" onkeypress="return isNumberKey(event)">
+                <input type="number" id="age" name="age" onkeypress="return isNumberKey(event)" value="{{old('age')}}">
                 <x-input-error :messages="$errors->get('age')" class="mt-2" />
 
             </div>
             <div class="form-group">
                 <label for="schedule">Schedule:</label>
                 <div class="schedule-field">
-                    <input type="text" id="schedule" name="schedule" readonly>
+                    <input type="text" id="schedule" name="schedule" readonly value="{{old('schedule')}}">
                     <button type="button" class="btn" onclick="showSchedulePopup()">Set Schedule</button>
                     <x-input-error :messages="$errors->get('schedule')" class="mt-2" />
 
@@ -202,13 +202,13 @@
             </div>
             <div class="form-group">
                 <label for="shift_start">Start Shift:</label>
-                <input type="time" id="shift_start" name="shift_start">
+                <input type="time" id="shift_start" name="shift_start" value="{{old('shift_start')}}">
                 <x-input-error :messages="$errors->get('shift_start')" class="mt-2" />
 
             </div>
             <div class="form-group">
                 <label for="shift_end">End Shift:</label>
-                <input type="time" id="shift_end" name="shift_end">
+                <input type="time" id="shift_end" name="shift_end" value="{{old('shift_end')}}">
                 <x-input-error :messages="$errors->get('shift_end')" class="mt-2" />
 
             </div>
@@ -216,7 +216,7 @@
                 <label for="cut">Doctor Cut (%):</label>
                 <select id="cut" name="cut">
                     @for ($i = 5; $i <= 75; $i += 5)
-                        <option value="{{ $i }}">{{ $i }}%</option>
+                        <option value="{{ $i }}" {{ old('cut') == $i ? 'selected' : '' }}>{{ $i }}%</option>
                     @endfor
                 </select>
                 <x-input-error :messages="$errors->get('cut')" class="mt-2" />

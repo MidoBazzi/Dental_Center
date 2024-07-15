@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,21 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cases List</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="include-navbar.js" defer></script>
-    <style>
-        .popup {
-            display: none;
-            position: fixed;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            padding: 20px;
-            background: #fff;
-            border: 1px solid #ddd;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-    </style>
     <script>
         function showDetails(description, patient, doctor, amount) {
             document.getElementById('details-description').innerText = description;
@@ -27,10 +13,12 @@
             document.getElementById('details-doctor').innerText = doctor;
             document.getElementById('details-amount').innerText = amount;
             document.getElementById('details-popup').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
         }
 
         function hideDetails() {
             document.getElementById('details-popup').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
         }
     </script>
 </head>
@@ -38,12 +26,14 @@
     <header>
         @include('layouts.navbar')
     </header>
-    <div id="navbar-container"></div>
-    <main>
-        <h1>Cases List</h1>
-        <section id="case-list">
+    <main class="container">
+        <h2>Cases List</h2>
+        <section id="patient-list">
             <ul>
-                <li>Case 1, <button onclick="showDetails('Cavity Treatment', 'John Doe', 'Dr. Jane Smith', '200')">Details</button></li>
+                <li>
+                    Case 1
+                    <button class="details-button" onclick="showDetails('Cavity Treatment', 'John Doe', 'Dr. Jane Smith', '200')">Details</button>
+                </li>
                 <!-- Add more dummy cases here -->
             </ul>
         </section>
@@ -52,9 +42,10 @@
             <p><strong>Description:</strong> <span id="details-description"></span></p>
             <p><strong>Patient:</strong> <span id="details-patient"></span></p>
             <p><strong>Doctor:</strong> <span id="details-doctor"></span></p>
-            <p><strong>Amount:</strong> <span id="details-amount"></span></p>
-            <button onclick="hideDetails()">Close</button>
+            <p><strong>Amount:</strong> $<span id="details-amount"></span></p>
+            <button class="btn" onclick="hideDetails()">Close</button>
         </div>
+        <div id="overlay" class="overlay" onclick="hideDetails()"></div>
     </main>
 </body>
 </html>

@@ -6,50 +6,44 @@
     <title>Material Payments List</title>
     <link rel="stylesheet" href="styles.css">
     <script src="include-navbar.js" defer></script>
-    <style>
-        .popup {
-            display: none;
-            position: fixed;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            padding: 20px;
-            background: #fff;
-            border: 1px solid #ddd;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-    </style>
     <script>
-        function showDetails(material, quantity, price) {
-            document.getElementById('details-material').innerText = material;
-            document.getElementById('details-quantity').innerText = quantity;
+        function showDetails(description, price, date) {
+            document.getElementById('details-description').innerText = description;
             document.getElementById('details-price').innerText = price;
+            document.getElementById('details-date').innerText = date;
             document.getElementById('details-popup').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
         }
 
         function hideDetails() {
             document.getElementById('details-popup').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
         }
     </script>
 </head>
 <body>
-    <div id="navbar-container"></div>
-    <main>
-        <h1>Material Payments List</h1>
-        <section id="payment-list">
+    <header>
+        @include('layouts.navbar')
+    </header>
+    <main class="container">
+        <h2>Material Payments List</h2>
+        <section id="patient-list">
             <ul>
-                <li>Material 1, <button onclick="showDetails('Toothpaste', '100', '300')">Details</button></li>
+                <li>
+                    Payment 1
+                    <button class="details-button" onclick="showDetails('Bought 100 units of toothpaste', '300', '2024-07-15')">Details</button>
+                </li>
                 <!-- Add more dummy payments here -->
             </ul>
         </section>
         <div id="details-popup" class="popup">
             <h2>Payment Details</h2>
-            <p><strong>Material:</strong> <span id="details-material"></span></p>
-            <p><strong>Quantity:</strong> <span id="details-quantity"></span></p>
+            <p><strong>Description:</strong> <span id="details-description"></span></p>
             <p><strong>Price:</strong> <span id="details-price"></span></p>
-            <button onclick="hideDetails()">Close</button>
+            <p><strong>Date:</strong> <span id="details-date"></span></p>
+            <button class="btn" onclick="hideDetails()">Close</button>
         </div>
+        <div id="overlay" class="overlay" onclick="hideDetails()"></div>
     </main>
 </body>
 </html>

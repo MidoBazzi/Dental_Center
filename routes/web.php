@@ -8,6 +8,7 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\DentalCaseController;
 use App\Http\Controllers\AutocompleteController;
 
+use App\Http\Controllers\MaterialController;
 
 Route::get('/', [UserController::class, "index"])->name('index');
 
@@ -35,6 +36,3 @@ Route::controller(DentalCaseController::class)->group(function () {
     Route::get('cases', 'showall')->name("cases.showall");
     Route::get('cases/add', 'showadd')->name("cases.showadd");
 });
-
-Route::get('/autocomplete/doctors', [AutocompleteController::class, 'getDoctors']);
-Route::get('/autocomplete/patients', [AutocompleteController::class, 'getPatients']);

@@ -15,11 +15,11 @@
         @include('layouts.navbar')
     </header>
     <div id="navbar-container"></div>
-    <main>
-        <h1>Add Case</h1>
+    <div class="container">
+        <h2>Add Case</h2>
         <form>
             <label for="description">Description:</label>
-            <textarea id="description" name="description"></textarea>
+            <input type="text" id="description" name="description">
             <label for="patient">Patient:</label>
             <input type="text" id="patient" name="patient">
             <label for="doctor">Doctor:</label>
@@ -29,35 +29,5 @@
             <button type="submit">Add Case</button>
         </form>
     </main>
-
-    <script>
-    $(document).ready(function() {
-        $("#doctor").autocomplete({
-            source: function(request, response) {
-                $.ajax({
-                    url: "/autocomplete/doctors",
-                    data: { q: request.term },
-                    success: function(data) {
-                        response(data);
-                    }
-                });
-            },
-            minLength: 2,
-        });
-
-        $("#patient").autocomplete({
-            source: function(request, response) {
-                $.ajax({
-                    url: "/autocomplete/patients",
-                    data: { q: request.term },
-                    success: function(data) {
-                        response(data);
-                    }
-                });
-            },
-            minLength: 2,
-        });
-    });
-    </script>
 </body>
 </html>

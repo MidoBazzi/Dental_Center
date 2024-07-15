@@ -343,8 +343,8 @@ h2 {
                 <li class="dropdown">
                     <a href="javascript:void(0)" class="dropbtn">Material Payments</a>
                     <div class="dropdown-content">
-                        <a href="add_material_payment.html">Add Material Payment</a>
-                        <a href="material_payments_list.html">Material Payments List</a>
+                        <a href={{ route('materials.showadd') }}>Add Material Payment</a>
+                        <a href={{ route('materials.showall') }}>Material Payments List</a>
                     </div>
                 </li>
             </ul>

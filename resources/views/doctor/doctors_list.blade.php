@@ -10,7 +10,6 @@
             document.getElementById('details-phone').innerText = phone;
             document.getElementById('details-address').innerText = address;
             document.getElementById('details-specialization').innerText = specialization;
-            document.getElementById('details-experience').innerText = experience + ' years';
             document.getElementById('details-schedule').innerText = schedule;
             document.getElementById('details-start-shift').innerText = startShift;
             document.getElementById('details-end-shift').innerText = endShift;
@@ -33,12 +32,13 @@
         <h2>Doctors List</h2>
         <section id="patient-list">
             <ul>
+                @foreach ($doctors as  $doctor)
                 <li>
-                    Dr. Jane Smith
-                    <button class="details-button" onclick="showDetails('Dr. Jane Smith', '9876543210', '456 Elm St', 'Orthodontist', '15', 'Monday, Wednesday, Friday', '08:00 AM', '04:00 PM', '20%')">Details</button>
+                    {{$doctor->name}}
+                    <button class="details-button" onclick="showDetails('{{$doctor->name}}', '{{$doctor->phone_num}}', '{{$doctor->address}}', '{{$doctor->age}}', '{{$doctor->speciality}}', '{{$doctor->schedule}}', '{{$doctor->shift_start}}', '{{$doctor->shift_end}}', '{{$doctor->cut}}')">Details</button>
                 </li>
-                <!-- Add more dummy doctors here -->
-            </ul>
+                @endforeach
+                        </ul>
         </section>
         <div id="details-popup" class="popup">
             <h2>Doctor Details</h2>
@@ -46,7 +46,6 @@
             <p><strong>Phone:</strong> <span id="details-phone"></span></p>
             <p><strong>Address:</strong> <span id="details-address"></span></p>
             <p><strong>Specialization:</strong> <span id="details-specialization"></span></p>
-            <p><strong>Experience:</strong> <span id="details-experience"></span></p>
             <p><strong>Schedule:</strong> <span id="details-schedule"></span></p>
             <p><strong>Start Shift:</strong> <span id="details-start-shift"></span></p>
             <p><strong>End Shift:</strong> <span id="details-end-shift"></span></p>

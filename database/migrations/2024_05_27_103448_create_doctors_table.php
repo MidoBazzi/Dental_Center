@@ -19,8 +19,8 @@ return new class extends Migration
             $table->integer('age')->unsinged();
             $table->string('speciality');
             $table->string('schedule');
-            $table->integer('shift_start')->unsinged();
-            $table->integer('shift_end')->unsinged();
+            $table->time('shift_start')->unsinged();
+            $table->time('shift_end')->unsinged();
             $table->integer('cut')->unsinged();
             $table->integer('amount_due')->unsinged()->default(0);;
 

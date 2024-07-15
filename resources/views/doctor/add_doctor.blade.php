@@ -159,49 +159,68 @@
     </header>
     <div class="container">
         <h2>Add Doctor</h2>
-        <form>
+        <form method="POST" action="{{route('doctors.store')}}">
+            @csrf
             <div class="form-group">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name">
+                <x-input-error :messages="$errors->get('name')" class="mt-2" />
+
             </div>
             <div class="form-group">
-                <label for="phone">Phone Number:</label>
-                <input type="text" id="phone" name="phone">
+                <label for="phone_num">Phone Number:</label>
+                <input type="text" id="phone_num" name="phone_num" onkeypress="return isNumberKey(event)">
+                <x-input-error :messages="$errors->get('phone_num')" class="mt-2" />
+
             </div>
             <div class="form-group">
                 <label for="address">Address:</label>
                 <input type="text" id="address" name="address">
+                <x-input-error :messages="$errors->get('address')" class="mt-2" />
+
             </div>
             <div class="form-group">
-                <label for="specialization">Specialization:</label>
-                <input type="text" id="specialization" name="specialization">
+                <label for="speciality">Specialization:</label>
+                <input type="text" id="speciality" name="speciality">
+                <x-input-error :messages="$errors->get('speciality')" class="mt-2" />
+
             </div>
             <div class="form-group">
-                <label for="experience">Experience (years):</label>
-                <input type="number" id="experience" name="experience">
+                <label for="age">Age (years):</label>
+                <input type="number" id="age" name="age" onkeypress="return isNumberKey(event)">
+                <x-input-error :messages="$errors->get('age')" class="mt-2" />
+
             </div>
             <div class="form-group">
                 <label for="schedule">Schedule:</label>
                 <div class="schedule-field">
                     <input type="text" id="schedule" name="schedule" readonly>
                     <button type="button" class="btn" onclick="showSchedulePopup()">Set Schedule</button>
+                    <x-input-error :messages="$errors->get('schedule')" class="mt-2" />
+
                 </div>
             </div>
             <div class="form-group">
-                <label for="start_shift">Start Shift:</label>
-                <input type="time" id="start_shift" name="start_shift">
+                <label for="shift_start">Start Shift:</label>
+                <input type="time" id="shift_start" name="shift_start">
+                <x-input-error :messages="$errors->get('shift_start')" class="mt-2" />
+
             </div>
             <div class="form-group">
-                <label for="end_shift">End Shift:</label>
-                <input type="time" id="end_shift" name="end_shift">
+                <label for="shift_end">End Shift:</label>
+                <input type="time" id="shift_end" name="shift_end">
+                <x-input-error :messages="$errors->get('shift_end')" class="mt-2" />
+
             </div>
             <div class="form-group">
-                <label for="doctor_cut">Doctor Cut (%):</label>
-                <select id="doctor_cut" name="doctor_cut">
+                <label for="cut">Doctor Cut (%):</label>
+                <select id="cut" name="cut">
                     @for ($i = 5; $i <= 75; $i += 5)
                         <option value="{{ $i }}">{{ $i }}%</option>
                     @endfor
                 </select>
+                <x-input-error :messages="$errors->get('cut')" class="mt-2" />
+
             </div>
             <button type="submit" class="btn">Add Doctor</button>
         </form>
@@ -220,5 +239,12 @@
         </form>
     </div>
     <div id="overlay" class="overlay" onclick="hideSchedulePopup()"></div>
+
+    <script>
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            return (charCode >= 48 && charCode <= 57);
+        }
+    </script>
 </body>
 </html>

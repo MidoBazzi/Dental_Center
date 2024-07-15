@@ -24,7 +24,7 @@ class PatientController extends Controller
         $patient->age = $request->age;
         $patient->save();
 
-        return redirect(route('patients'));
+        return redirect(route('patients.showall'));
     }
 
 

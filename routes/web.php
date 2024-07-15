@@ -39,6 +39,8 @@ Route::controller(DentalCaseController::class)->group(function () {
 Route::controller(MaterialController::class)->group(function () {
     Route::get('materials', 'showall')->name("materials.showall");
     Route::get('materials/add', 'showadd')->name("materials.showadd");
+    Route::post('materials/store', 'store')->name("materials.store");
+
 });
 Route::get('/autocomplete/doctors', [AutocompleteController::class, 'getDoctors']);
 Route::get('/autocomplete/patients', [AutocompleteController::class, 'getPatients']);

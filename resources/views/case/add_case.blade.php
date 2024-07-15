@@ -6,6 +6,9 @@
     <title>Add Case</title>
     <link rel="stylesheet" href="styles.css">
     <script src="include-navbar.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 <body>
     <header>
@@ -16,7 +19,7 @@
         <h1>Add Case</h1>
         <form>
             <label for="description">Description:</label>
-            <input type="text" id="description" name="description">
+            <textarea id="description" name="description"></textarea>
             <label for="patient">Patient:</label>
             <input type="text" id="patient" name="patient">
             <label for="doctor">Doctor:</label>
@@ -26,5 +29,35 @@
             <button type="submit">Add Case</button>
         </form>
     </main>
+
+    <script>
+    $(document).ready(function() {
+        $("#doctor").autocomplete({
+            source: function(request, response) {
+                $.ajax({
+                    url: "/autocomplete/doctors",
+                    data: { q: request.term },
+                    success: function(data) {
+                        response(data);
+                    }
+                });
+            },
+            minLength: 2,
+        });
+
+        $("#patient").autocomplete({
+            source: function(request, response) {
+                $.ajax({
+                    url: "/autocomplete/patients",
+                    data: { q: request.term },
+                    success: function(data) {
+                        response(data);
+                    }
+                });
+            },
+            minLength: 2,
+        });
+    });
+    </script>
 </body>
 </html>

@@ -10,9 +10,17 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class PatientData extends Model
 {
     use HasFactory;
+    protected $guarded = [];
+
 
     public function patients(): BelongsTo
     {
         return $this->belongsTo(Patient::class);
     }
+
+    public function dentalcases(): BelongsTo
+    {
+        return $this->belongsTo(Dentalcase::class);
+    }
+
 }

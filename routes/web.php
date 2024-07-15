@@ -6,6 +6,7 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\DentalCaseController;
+use App\Http\Controllers\MaterialController;
 
 Route::get('/', [UserController::class, "index"])->name('index');
 
@@ -30,4 +31,9 @@ Route::controller(AppointmentController::class)->group(function () {
 Route::controller(DentalCaseController::class)->group(function () {
     Route::get('cases', 'showall')->name("cases.showall");
     Route::get('cases/add', 'showadd')->name("cases.showadd");
+});
+
+Route::controller(MaterialController::class)->group(function () {
+    Route::get('materials', 'showall')->name("materials.showall");
+    Route::get('materials/add', 'showadd')->name("materials.showadd");
 });

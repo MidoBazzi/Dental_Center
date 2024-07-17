@@ -12,4 +12,7 @@ class DentalCaseController extends Controller
     public function showadd(){
         return view('case.add_case');
     }
+    public function showold(){
+        return view('case.old_cases');
+    }
 }

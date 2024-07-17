@@ -54,8 +54,6 @@
                     <span>Case 1</span>
                     <div class="button-group">
                         <button class="details-button" onclick="showDetails('Cavity Treatment', 'John Doe', 'Dr. Jane Smith', '200')">Details</button>
-                        <button class="pay-button" onclick="showPayPopup()">Pay</button>
-                        <button class="end-button" onclick="showEndPopup()">End</button>
                     </div>
                 </li>
                 <!-- Add more dummy cases here -->

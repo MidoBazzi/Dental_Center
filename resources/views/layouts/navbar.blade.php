@@ -338,6 +338,7 @@ h2 {
                     <div class="dropdown-content">
                         <a href={{ route('cases.showadd') }}>Add Case</a>
                         <a href={{ route('cases.showall') }}>Cases List</a>
+                        <a href={{ route('cases.showold') }}>Old Cases</a>
                     </div>
                 </li>
                 <li class="dropdown">

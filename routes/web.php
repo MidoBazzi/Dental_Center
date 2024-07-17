@@ -34,6 +34,7 @@ Route::controller(AppointmentController::class)->group(function () {
 Route::controller(DentalCaseController::class)->group(function () {
     Route::get('cases', 'showall')->name("cases.showall");
     Route::get('cases/add', 'showadd')->name("cases.showadd");
+    Route::get('cases/old', 'showold')->name("cases.showold");
 });
 
 Route::controller(MaterialController::class)->group(function () {

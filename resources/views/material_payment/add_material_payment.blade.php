@@ -32,22 +32,32 @@
     </header>
     <div class="container">
         <h2>Add Material Payment</h2>
-        <form>
+        <form action="{{route('materials.store')}}" method="POST">
+            @csrf
             <div class="form-group">
-                <label for="description">Description:</label>
-                <textarea id="description" name="description" rows="4"></textarea>
+                <label for="desc">Description:</label>
+                <textarea id="desc" name="desc" rows="4">{{old('desc')}}</textarea>
+                <x-input-error :messages="$errors->get('desc')" class="mt-2" />
             </div>
             <div class="form-group">
                 <label for="price">Price:</label>
-                <input type="number" id="price" name="price">
+                <input type="number" id="price" name="price" value="{{old('price')}}" onkeypress="return isNumberKey(event)">
+                <x-input-error :messages="$errors->get('price')" class="mt-2" />
             </div>
             <div class="form-group">
                 <label for="date">Date:</label>
-                <input type="date" id="date" name="date">
+                <input type="date" id="date" name="date" value="{{old('date')}}">
+                <x-input-error :messages="$errors->get('date')" class="mt-2" />
             </div>
             <button type="submit" class="btn">Add Payment</button>
         </form>
     </div>
+    <script>
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            return (charCode >= 48 && charCode <= 57);
+        }
+    </script>
 </body>
 </html>
 س

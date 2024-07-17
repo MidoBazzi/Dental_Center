@@ -19,12 +19,12 @@ class MaterialController extends Controller
     public function store(AddMaterialRequest $request){
 
         $material = new MaterialPayment;
-        $material->date = $request->nadateme;
+        $material->date = $request->date;
         $material->desc = $request->desc;
         $material->price = $request->price;
 
 
-        $doctor->save();
+        $material->save();
 
         return redirect(route('materials.showall'));
     }

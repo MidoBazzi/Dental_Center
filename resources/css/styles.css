@@ -168,6 +168,17 @@ h2 {
     align-items: center;
 }
 
+.case-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+}
+
 #patient-list button {
     background-color: #007bff;
     color: #fff;
@@ -192,42 +203,12 @@ h2 {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    width: 90%;
-    max-width: 500px;
-}
-
-.popup h2 {
-    margin-top: 0;
-    font-size: 1.5em;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-.popup p {
-    margin: 5px 0;
-    font-size: 1em;
-    line-height: 1.5;
-}
-
-.popup button {
-    display: block;
+    z-index: 9999;
+    max-width: 400px;
     width: 100%;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    cursor: pointer;
-    margin-top: 20px;
-    transition: background-color 0.3s ease;
+    box-sizing: border-box;
 }
 
-.popup button:hover {
-    background-color: #0056b3;
-}
-
-/* Overlay */
 .overlay {
     display: none;
     position: fixed;
@@ -236,60 +217,5 @@ h2 {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-}
-
-.show {
-    display: block;
-}
-
-#appointment-list ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-#appointment-list li {
-    background-color: #e9ecef;
-    border: 1px solid #dee2e6;
-    border-radius: 5px;
-    margin: 10px 0;
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#appointment-list h3 {
-    cursor: pointer;
-    padding: 10px;
-    background-color: #f4f4f4;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin-bottom: 5px;
-    text-align: center;
-}
-
-.list-item {
-    background-color: #e9ecef;
-    border: 1px solid #dee2e6;
-    border-radius: 5px;
-    margin: 10px 0;
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.details-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.details-button:hover {
-    background-color: #0056b3;
+    z-index: 9998;
 }

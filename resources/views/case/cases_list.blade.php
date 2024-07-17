@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,6 +19,27 @@
             document.getElementById('details-popup').style.display = 'none';
             document.getElementById('overlay').style.display = 'none';
         }
+
+        function showPayPopup(amount) {
+            document.getElementById('pay-amount').value = amount;
+            document.getElementById('pay-popup').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        function hidePayPopup() {
+            document.getElementById('pay-popup').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+
+        function showEndPopup() {
+            document.getElementById('end-popup').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        function hideEndPopup() {
+            document.getElementById('end-popup').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
     </script>
 </head>
 <body>
@@ -30,9 +50,13 @@
         <h2>Cases List</h2>
         <section id="patient-list">
             <ul>
-                <li>
-                    Case 1
-                    <button class="details-button" onclick="showDetails('Cavity Treatment', 'John Doe', 'Dr. Jane Smith', '200')">Details</button>
+                <li class="case-item">
+                    <span>Case 1</span>
+                    <div class="button-group">
+                        <button class="details-button" onclick="showDetails('Cavity Treatment', 'John Doe', 'Dr. Jane Smith', '200')">Details</button>
+                        <button class="pay-button" onclick="showPayPopup('200')">Pay</button>
+                        <button class="end-button" onclick="showEndPopup()">End</button>
+                    </div>
                 </li>
                 <!-- Add more dummy cases here -->
             </ul>
@@ -45,7 +69,21 @@
             <p><strong>Amount:</strong> $<span id="details-amount"></span></p>
             <button class="btn" onclick="hideDetails()">Close</button>
         </div>
-        <div id="overlay" class="overlay" onclick="hideDetails()"></div>
+        <div id="pay-popup" class="popup">
+            <h2>Pay</h2>
+            <div class="form-group">
+                <label for="pay-amount">Amount:</label>
+                <input type="number" id="pay-amount" name="amount" min="0" step="0.01">
+            </div>
+            <button class="btn" onclick="hidePayPopup()">Pay</button>
+        </div>
+        <div id="end-popup" class="popup">
+            <h2>End Case</h2>
+            <p>Are you sure you want to end this case?</p>
+            <button class="btn" onclick="hideEndPopup()">Cancel</button>
+            <button class="btn" onclick="hideEndPopup()">Confirm</button>
+        </div>
+        <div id="overlay" class="overlay" onclick="hideDetails(); hidePayPopup(); hideEndPopup();"></div>
     </main>
 </body>
 </html>

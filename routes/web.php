@@ -35,6 +35,8 @@ Route::controller(DentalCaseController::class)->group(function () {
     Route::get('cases', 'showall')->name("cases.showall");
     Route::get('cases/add', 'showadd')->name("cases.showadd");
     Route::get('cases/old', 'showold')->name("cases.showold");
+    Route::post('cases/store', 'store')->name("cases.store");
+
 });
 
 Route::controller(MaterialController::class)->group(function () {

@@ -50,15 +50,18 @@
         <h2>Cases List</h2>
         <section id="patient-list">
             <ul>
+                @foreach ($cases as $case)
+
                 <li class="case-item">
-                    <span>Case 1</span>
+                    <span>{{$case->desc}}</span>
                     <div class="button-group">
-                        <button class="details-button" onclick="showDetails('Cavity Treatment', 'John Doe', 'Dr. Jane Smith', '200')">Details</button>
+                        <button class="details-button" onclick="showDetails('{{$case->desc}}', '{{$case->patient->name}}', 'Dr. {{$case->doctor->name}}', '{{$case->amount}}')">Details</button>
                         <button class="pay-button" onclick="showPayPopup()">Pay</button>
                         <button class="end-button" onclick="showEndPopup()">End</button>
                     </div>
                 </li>
-                <!-- Add more dummy cases here -->
+                @endforeach
+
             </ul>
         </section>
         <div id="details-popup" class="popup">

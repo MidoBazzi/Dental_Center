@@ -11,15 +11,14 @@ class AutocompleteController extends Controller
     public function getDoctors(Request $request)
     {
         $search = $request->query('q');
-        $doctors = Doctor::where('name', 'LIKE', "%{$search}%")->pluck('name');
+        $doctors = Doctor::where('name', 'LIKE', "%{$search}%")->get(['id', 'name']);
         return response()->json($doctors);
     }
 
     public function getPatients(Request $request)
     {
         $search = $request->query('q');
-        $patients = Patient::where('name', 'LIKE', "%{$search}%")->pluck('name');
+        $patients = Patient::where('name', 'LIKE', "%{$search}%")->get(['id', 'name']);
         return response()->json($patients);
     }
 }
-

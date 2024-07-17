@@ -29,11 +29,15 @@
         <h2>Material Payments List</h2>
         <section id="patient-list">
             <ul>
+                @foreach ($materials as $material )
+
+
                 <li>
-                    Payment 1
-                    <button class="details-button" onclick="showDetails('Bought 100 units of toothpaste', '300', '2024-07-15')">Details</button>
+                    Payment {{$material->id}}
+                    <button class="details-button" onclick="showDetails('{{$material->desc}}', '{{$material->price}}', '{{$material->date}}')">Details</button>
                 </li>
-                <!-- Add more dummy payments here -->
+                @endforeach
+
             </ul>
         </section>
         <div id="details-popup" class="popup">

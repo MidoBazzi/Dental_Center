@@ -24,6 +24,10 @@
                 <input type="time" id="time" name="time">
             </div>
             <div class="form-group">
+                <label for="duration">Duration:</label>
+                <input type="time" id="duration" name="duration">
+            </div>
+            <div class="form-group">
                 <label for="doctor">Doctor:</label>
                 <input type="text" id="doctor" name="doctor">
             </div>

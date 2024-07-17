@@ -13,12 +13,12 @@ class PatientData extends Model
     protected $guarded = [];
 
 
-    public function patients(): BelongsTo
+    public function patient(): BelongsTo
     {
         return $this->belongsTo(Patient::class);
     }
 
-    public function dentalcases(): BelongsTo
+    public function dentalcase(): BelongsTo
     {
         return $this->belongsTo(Dentalcase::class);
     }

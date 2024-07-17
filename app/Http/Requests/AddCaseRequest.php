@@ -23,10 +23,10 @@ class AddCaseRequest extends FormRequest
     {
         return [
             "desc" => "required|string",
-            "doctor_id" => "required|integer",
-            "patient_id" => "required|integer",
-            "doctor" => "required|string",
-            "patient" => "required|string",
+            "doctor_id" => "required|integer|exists:doctors,id",
+            "patient_id" => "required|integer|exists:patients,id",
+            "doctor" => "required|string|exists:doctors,name",
+            "patient" => "required|string|exists:patients,name",
             "amount" => "required|integer|min:1",
         ];
     }

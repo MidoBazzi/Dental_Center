@@ -13,7 +13,7 @@ class Payment extends Model
     protected $guarded = [];
 
 
-    public function dentalcases(): BelongsTo
+    public function dentalcase(): BelongsTo
     {
         return $this->belongsTo(Dentalcase::class);
     }

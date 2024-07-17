@@ -13,7 +13,7 @@ class DoctorPayment extends Model
     protected $guarded = [];
 
 
-    public function doctors(): BelongsTo
+    public function doctor(): BelongsTo
     {
         return $this->belongsTo(Doctor::class);
     }

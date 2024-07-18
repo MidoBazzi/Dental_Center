@@ -22,7 +22,7 @@ return new class extends Migration
             $table->time('shift_start')->unsinged();
             $table->time('shift_end')->unsinged();
             $table->integer('cut')->unsinged();
-            $table->integer('amount_due')->unsinged()->default(0);;
+            $table->float('amount_due')->unsinged()->default(0);;
 
 
 

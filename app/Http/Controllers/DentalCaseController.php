@@ -24,13 +24,6 @@ class DentalCaseController extends Controller
         $cases = Dentalcase::with('doctor', 'patient')->get()->where('status',true);
 
         return view('case.old_cases',compact('cases'));    }
-
-        public function viewPayments()
-        {
-            return view('case.payment_history');
-        }
-
-
     public function store(AddCaseRequest $request){
 
         $case = new Dentalcase;
@@ -70,13 +63,20 @@ class DentalCaseController extends Controller
 
         $doctor = $case->doctor;
         $doctor->amount_due = $request->amount * ($doctor->cut / 100);
+
         $doctor->save();
         $payment->save();
 
         return redirect(route('cases.showall'));
     }
 
+    public function viewPayments($case_id){
+        $case = Dentalcase::findorfail($case_id);
+        $payments = $case->payments;
 
+        return view('case.payment_history',compact('payments','case'));
+
+    }
 
     public function endcase(Request $request){
         $validatedData = $request->validate([

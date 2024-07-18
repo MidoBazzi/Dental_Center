@@ -15,6 +15,13 @@ class DoctorController extends Controller
     public function showadd(){
         return view('doctor.add_doctor');
     }
+
+    public function paymentHistory()
+    {
+        return view('doctor.doctor_payment_history', compact('doctor', 'payments'));
+    }
+
+
     public function store(AddDoctorRequest $request){
 
         $doctor = new Doctor;

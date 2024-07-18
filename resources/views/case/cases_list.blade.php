@@ -75,7 +75,7 @@
                         <button class="details-button" onclick="showDetails('{{ $case->desc }}', '{{ $case->patient->name }}', 'Dr. {{ $case->doctor->name }}', '{{ $case->amount }}', '{{ $case->amount - $amount_left }}')">Details</button>
                         <button class="pay-button" onclick="showPayPopup('{{ $case->amount }}', '{{ $case->id }}')">Pay</button>
                         <button class="end-button" onclick="showEndPopup('{{ $case->id }}')">End</button>
-                        <button class="view-payments-button" onclick="window.location.href='{{ route('cases.payments', $case->id) }}'">View Payments</button>
+                        <button class="view-payments-button" onclick="window.location.href='{{ route('cases.payments', $case->id) }}'">View Payments History</button>
                     </div>
                 </li>
                 @endforeach

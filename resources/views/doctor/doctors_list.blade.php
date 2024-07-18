@@ -86,6 +86,7 @@
                     <div class="button-group">
                         <button class="details-button" onclick="showDetails('{{ $doctor->name }}', '{{ $doctor->phone_num }}', '{{ $doctor->address }}', '{{ $doctor->age }}', '{{ $doctor->speciality }}', '{{ $doctor->schedule }}', '{{ $doctor->shift_start }}', '{{ $doctor->shift_end }}', '{{ $doctor->cut }}')">Details</button>
                         <button class="pay-button" onclick="showPayPopup()">Pay</button>
+                        <button class="view-payment-button" onclick="window.location.href='{{ route('doctor.payment_history', $doctor->id) }}'">View Payment History</button>
                     </div>
                 </li>
                 @endforeach

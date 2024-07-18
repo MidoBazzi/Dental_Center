@@ -6,7 +6,7 @@
     <title>Cases List</title>
     <link rel="stylesheet" href="styles.css">
     <script>
-        function showDetails(description, patient, doctor, amount,amount_left) {
+        function showDetails(description, patient, doctor, amount, amount_left) {
             document.getElementById('details-description').innerText = description;
             document.getElementById('details-patient').innerText = patient;
             document.getElementById('details-doctor').innerText = doctor;
@@ -50,14 +50,13 @@
         @include('layouts.navbar')
     </header>
 
-
     <main class="container">
         <h2>Cases List</h2>
         <section id="patient-list">
             <ul>
                 @foreach ($cases as $case)
                 <li class="case-item">
-                    <span>{{ $case->desc }}     @if ($errors->any())
+                    <span>{{ $case->desc }} @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
                                 @foreach ($errors->all() as $error)
@@ -67,15 +66,16 @@
                         </div>
                     @endif</span>
                     <div class="button-group">
-                    @php
-                        $amount_left = 0;
-                        foreach ($case->payments as $payment) {
-                            $amount_left += $payment->amount;
-                        }
-                    @endphp
-                        <button class="details-button" onclick="showDetails('{{ $case->desc }}', '{{ $case->patient->name }}', 'Dr. {{ $case->doctor->name }}', '{{ $case->amount }}','{{$case->amount - $amount_left}}'  )">Details</button>
+                        @php
+                            $amount_left = 0;
+                            foreach ($case->payments as $payment) {
+                                $amount_left += $payment->amount;
+                            }
+                        @endphp
+                        <button class="details-button" onclick="showDetails('{{ $case->desc }}', '{{ $case->patient->name }}', 'Dr. {{ $case->doctor->name }}', '{{ $case->amount }}', '{{ $case->amount - $amount_left }}')">Details</button>
                         <button class="pay-button" onclick="showPayPopup('{{ $case->amount }}', '{{ $case->id }}')">Pay</button>
                         <button class="end-button" onclick="showEndPopup('{{ $case->id }}')">End</button>
+                        <button class="view-payments-button" onclick="window.location.href='{{ route('cases.payments', $case->id) }}'">View Payments</button>
                     </div>
                 </li>
                 @endforeach
@@ -115,7 +115,6 @@
                 <button type="submit" class="btn">Confirm</button>
             </form>
             <button class="btn" onclick="hideEndPopup()">Cancel</button>
-
         </div>
 
         <div id="overlay" class="overlay" onclick="hideDetails(); hidePayPopup(); hideEndPopup();"></div>

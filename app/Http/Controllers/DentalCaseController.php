@@ -24,6 +24,13 @@ class DentalCaseController extends Controller
         $cases = Dentalcase::with('doctor', 'patient')->get()->where('status',true);
 
         return view('case.old_cases',compact('cases'));    }
+
+        public function viewPayments()
+        {
+            return view('case.payment_history');
+        }
+
+
     public function store(AddCaseRequest $request){
 
         $case = new Dentalcase;

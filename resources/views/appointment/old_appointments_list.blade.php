@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Appointments List</title>
+    <title>Old Appointments List</title>
     <link rel="stylesheet" href="styles.css">
     <script src="include-navbar.js" defer></script>
     <script>
@@ -38,23 +38,15 @@
     </header>
     <div id="navbar-container"></div>
     <main class="container">
-        <h2>Appointments List</h2>
+        <h2>Old Appointments List</h2>
         <section id="appointment-list">
-            <h3 onclick="toggleList('today-list')">Today's Appointments</h3>
-            <ul id="today-list" style="display: none;">
+            <h3 onclick="toggleList('past-list')">Past Appointments</h3>
+            <ul id="past-list" style="display: none;">
                 <li>
-                    Appointment 2
-                    <button class="btn" onclick="showDetails('2024-06-06', '10:00 AM', 'Dr. Jane Smith', 'John Doe', 'Cavity')">Details</button>
+                    Appointment 1
+                    <button class="btn" onclick="showDetails('2024-06-05', '09:00 AM', 'Dr. Jane Smith', 'John Doe', 'Routine Checkup')">Details</button>
                 </li>
-                <!-- Add more dummy appointments for today here -->
-            </ul>
-            <h3 onclick="toggleList('future-list')">Future Appointments</h3>
-            <ul id="future-list" style="display: none;">
-                <li>
-                    Appointment 3
-                    <button class="btn" onclick="showDetails('2024-06-07', '11:00 AM', 'Dr. Jane Smith', 'John Doe', 'Consultation')">Details</button>
-                </li>
-                <!-- Add more dummy appointments for future here -->
+                <!-- Add more dummy appointments for past here -->
             </ul>
         </section>
         <div id="details-popup" class="popup">

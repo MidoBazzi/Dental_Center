@@ -43,7 +43,7 @@
         }
     </style>
     <script>
-        function showDetails(name, phone, address, specialization, experience, schedule, startShift, endShift, doctorCut) {
+        function showDetails(name, phone, address, specialization, experience, schedule, startShift, endShift, doctorCut,amount_due) {
             document.getElementById('details-name').innerText = name;
             document.getElementById('details-phone').innerText = phone;
             document.getElementById('details-address').innerText = address;
@@ -52,6 +52,7 @@
             document.getElementById('details-start-shift').innerText = startShift;
             document.getElementById('details-end-shift').innerText = endShift;
             document.getElementById('details-doctor-cut').innerText = doctorCut;
+            document.getElementById('details-amount-due').innerText = amount_due;
             document.getElementById('details-popup').style.display = 'block';
             document.getElementById('overlay').style.display = 'block';
         }
@@ -84,7 +85,7 @@
                 <li>
                     <span>{{ $doctor->name }}</span>
                     <div class="button-group">
-                        <button class="details-button" onclick="showDetails('{{ $doctor->name }}', '{{ $doctor->phone_num }}', '{{ $doctor->address }}', '{{ $doctor->age }}', '{{ $doctor->speciality }}', '{{ $doctor->schedule }}', '{{ $doctor->shift_start }}', '{{ $doctor->shift_end }}', '{{ $doctor->cut }}')">Details</button>
+                        <button class="details-button" onclick="showDetails('{{ $doctor->name }}', '{{ $doctor->phone_num }}', '{{ $doctor->address }}', '{{ $doctor->age }}', '{{ $doctor->speciality }}', '{{ $doctor->schedule }}', '{{ $doctor->shift_start }}', '{{ $doctor->shift_end }}', '{{ $doctor->cut }}%' ,'{{ $doctor->amount_due }}$')">Details</button>
                         <button class="pay-button" onclick="showPayPopup()">Pay</button>
                         <button class="view-payment-button" onclick="window.location.href='{{ route('doctor.payment_history', $doctor->id) }}'">View Payment History</button>
                     </div>
@@ -102,7 +103,7 @@
             <p><strong>Start Shift:</strong> <span id="details-start-shift"></span></p>
             <p><strong>End Shift:</strong> <span id="details-end-shift"></span></p>
             <p><strong>Doctor Cut:</strong> <span id="details-doctor-cut"></span></p>
-            <p><strong>ِAmount Due:</strong> <span id="details-doctor-cut">300$</span></p>
+            <p><strong>ِAmount Due:</strong> <span id="details-amount-due"></span></p>
             <button class="btn" onclick="hideDetails()">Close</button>
         </div>
         <div id="pay-popup" class="popup">

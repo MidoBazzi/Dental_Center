@@ -24,13 +24,6 @@ class DentalCaseController extends Controller
         $cases = Dentalcase::with('doctor', 'patient')->get()->where('status',true);
 
         return view('case.old_cases',compact('cases'));    }
-
-        public function viewPayments()
-        {
-            return view('case.payment_history');
-        }
-
-
     public function store(AddCaseRequest $request){
 
         $case = new Dentalcase;
@@ -44,12 +37,22 @@ class DentalCaseController extends Controller
 
         return redirect(route('cases.showall'));
     }
+
+
+
+
     public function create_payment(Request  $request)
     {
         $validatedData = $request->validate([
         'dentalcase_id' => ['required', 'integer', 'exists:dentalcases,id'],
         'amount' => ['required', 'integer', 'min:1'],
         ]);
+
+        $case = Dentalcase::find($request->dentalcase_id);
+        $amount_paid = $case->payments->sum('amount');
+        if($amount_paid + $request->amount > $case->amount){
+            return redirect()->back()->withErrors(['error' => 'The total amount paid is more than the case cost.']);
+        }
         $now = Carbon::now();
         $payment = new Payment;
         $payment->date = $now;
@@ -57,10 +60,24 @@ class DentalCaseController extends Controller
         $payment->amount = $request->amount;
 
 
+
+        $doctor = $case->doctor;
+        $doctor->amount_due = $request->amount * ($doctor->cut / 100);
+
+        $doctor->save();
         $payment->save();
 
         return redirect(route('cases.showall'));
     }
+
+    public function viewPayments($case_id){
+        $case = Dentalcase::findorfail($case_id);
+        $payments = $case->payments;
+
+        return view('case.payment_history',compact('payments','case'));
+
+    }
+
     public function endcase(Request $request){
         $validatedData = $request->validate([
             "dentalcase_id" => "required|integer|exists:dentalcases,id",

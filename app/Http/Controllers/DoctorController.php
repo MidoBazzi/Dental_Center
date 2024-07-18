@@ -18,7 +18,7 @@ class DoctorController extends Controller
 
     public function paymentHistory()
     {
-        return view('doctor.doctor_payment_history', compact('doctor', 'payments'));
+        return view('doctor.doctor_payment_history');
     }
 
 

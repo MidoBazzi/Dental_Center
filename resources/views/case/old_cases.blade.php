@@ -28,7 +28,7 @@
         @include('layouts.navbar')
     </header>
     <main class="container">
-        <h2>Cases List</h2>
+        <h2>Old Cases List</h2>
         <section id="patient-list">
             <ul>
                 @foreach ($cases as $case)

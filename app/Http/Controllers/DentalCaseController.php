@@ -37,12 +37,22 @@ class DentalCaseController extends Controller
 
         return redirect(route('cases.showall'));
     }
+
+
+
+
     public function create_payment(Request  $request)
     {
         $validatedData = $request->validate([
         'dentalcase_id' => ['required', 'integer', 'exists:dentalcases,id'],
         'amount' => ['required', 'integer', 'min:1'],
         ]);
+
+        $case = Dentalcase::find($request->dentalcase_id);
+        $amount_paid = $case->payments->sum('amount');
+        if($amount_paid + $request->amount > $case->amount){
+            return redirect()->back()->withErrors(['error' => 'The total amount paid is more than the case cost.']);
+        }
         $now = Carbon::now();
         $payment = new Payment;
         $payment->date = $now;
@@ -50,10 +60,17 @@ class DentalCaseController extends Controller
         $payment->amount = $request->amount;
 
 
+
+        $doctor = $case->doctor;
+        $doctor->amount_due = $request->amount * ($doctor->cut / 100);
+        $doctor->save();
         $payment->save();
 
         return redirect(route('cases.showall'));
     }
+
+
+
     public function endcase(Request $request){
         $validatedData = $request->validate([
             "dentalcase_id" => "required|integer|exists:dentalcases,id",

@@ -145,18 +145,17 @@ h2 {
 }
 
 .btn {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
+    background-color: #007bff;
     color: #fff;
-    background-color: #00bfff;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
+    padding: 10px 20px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .btn:hover {
-    background-color: #0099cc;
+    background-color: #0056b3;
 }
 
 /* Specific styles for the patients list */

@@ -229,7 +229,7 @@
     <div id="schedule-popup" class="popup">
         <h2>Set Schedule</h2>
         <form class="schedule-group" onsubmit="updateScheduleField(); hideSchedulePopup(); return false;">
-            @foreach (['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] as $day)
+            @foreach ([ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] as $day)
                 <div class="form-group">
                     <input type="checkbox" id="{{ strtolower($day) }}" name="schedule[]" value="{{ $day }}">
                     <label for="{{ strtolower($day) }}">{{ $day }}</label>

@@ -31,60 +31,70 @@
     </header>
     <div id="statistics">
         <div class="stat">
-            <h2>Number of Patients This Month</h2>
-            <canvas id="patientsChart"></canvas>
+            <h2>Daily Earnings</h2>
+            <canvas id="earningsChart"></canvas>
         </div>
         <div class="stat">
-            <h2>Most Frequent Medical Cases</h2>
-            <canvas id="casesChart"></canvas>
+            <h2>Appointments by Doctor</h2>
+            <canvas id="appointmentsChart"></canvas>
         </div>
     </div>
     <script>
-        const ctx1 = document.getElementById('patientsChart').getContext('2d');
-        const patientsChart = new Chart(ctx1, {
-            type: 'bar',
-            data: {
-                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
-                datasets: [{
-                    label: '# of Patients',
-                    data: [8, 18, 5, 12],
-                    backgroundColor: 'rgba(0, 123, 255, 0.5)',
-                    borderColor: 'rgba(0, 123, 255, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
+        // Dummy data for earnings
+        const earningsData = {
+            labels: [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+            datasets: [{
+                label: 'Earnings ($)',
+                data: [200, 150, 300, 250, 400, 350, 500],
+                backgroundColor: 'rgba(0, 123, 255, 0.5)',
+                borderColor: 'rgba(0, 123, 255, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        const earningsOptions = {
+            scales: {
+                y: {
+                    beginAtZero: true
                 }
             }
+        };
+
+        const earningsCtx = document.getElementById('earningsChart').getContext('2d');
+        const earningsChart = new Chart(earningsCtx, {
+            type: 'bar',
+            data: earningsData,
+            options: earningsOptions
         });
 
-        const ctx2 = document.getElementById('casesChart').getContext('2d');
-        const casesChart = new Chart(ctx2, {
+        // Dummy data for appointments by doctor
+        const appointmentsData = {
+            labels: ['Dr. Smith', 'Dr. Johnson', 'Dr. Lee', 'Dr. Martinez', 'Dr. Patel'],
+            datasets: [{
+                label: 'Appointments',
+                data: [5, 8, 6, 7, 9],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.5)',
+                    'rgba(54, 162, 235, 0.5)',
+                    'rgba(255, 206, 86, 0.5)',
+                    'rgba(75, 192, 192, 0.5)',
+                    'rgba(153, 102, 255, 0.5)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        const appointmentsCtx = document.getElementById('appointmentsChart').getContext('2d');
+        const appointmentsChart = new Chart(appointmentsCtx, {
             type: 'pie',
-            data: {
-                labels: ['Cavity', 'Gum Disease', 'Toothache', 'Other'],
-                datasets: [{
-                    label: 'Most Frequent Medical Cases',
-                    data: [45, 25, 20, 10],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.5)',
-                        'rgba(54, 162, 235, 0.5)',
-                        'rgba(255, 206, 86, 0.5)',
-                        'rgba(75, 192, 192, 0.5)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            }
+            data: appointmentsData
         });
     </script>
 </body>

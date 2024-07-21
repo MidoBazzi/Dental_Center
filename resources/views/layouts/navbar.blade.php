@@ -137,10 +137,11 @@ h2 {
 
 .form-group input {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
     box-sizing: border-box;
     border: 1px solid #ddd;
     border-radius: 4px;
+    font-size: 16px;
 }
 
 .btn {
@@ -300,6 +301,7 @@ h2 {
 .details-button:hover {
     background-color: #0056b3;
 }
+
 a {
   text-decoration: none;
 }

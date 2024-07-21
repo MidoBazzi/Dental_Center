@@ -93,4 +93,24 @@ class DentalCaseController extends Controller
 
         return redirect(route('cases.showall'));
     }
+
+
+    public function autocompletePatients(Request $request)
+    {
+        $query = $request->get('q');
+        $patients = Patient::where('name', 'LIKE', "%{$query}%")->get(['id', 'name']);
+        return response()->json($patients);
+    }
+
+    public function autocompleteCases(Request $request)
+    {
+        $patientId = $request->get('patient_id');
+        $cases = Dentalcase::where('patient_id', $patientId)->where('status', false)->with('doctor')->get(['id', 'desc', 'doctor_id']);
+        $cases->load('doctor:id,name'); // Eager load only necessary fields
+        return response()->json($cases);
+    }
+
+
 }
+
+

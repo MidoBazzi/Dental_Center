@@ -127,7 +127,7 @@
                     selectedDays.push(checkbox.value);
                 }
             });
-            document.getElementById('schedule').value = selectedDays.join(', ');
+            document.getElementById('schedule').value = selectedDays.join(',');
         }
 
         document.addEventListener("DOMContentLoaded", function () {

@@ -26,7 +26,11 @@ Route::controller(DoctorController::class)->group(function () {
     Route::get('doctors/payments/{doctor}', 'paymentHistory')->name('doctor.payment_history');
 
 
+
 });
+
+Route::get('/autocomplete/available-dates', [DoctorController::class, 'availableDates']);
+Route::get('/autocomplete/available-times', [DoctorController::class, 'availableTimes']);
 
 Route::controller(AppointmentController::class)->group(function () {
     Route::get('appointments', 'showall')->name("appointments.showall");
@@ -46,6 +50,9 @@ Route::controller(DentalCaseController::class)->group(function () {
 
 
 });
+
+Route::get('/autocomplete/patients', [DentalCaseController::class, 'autocompletePatients']);
+Route::get('/autocomplete/cases', [DentalCaseController::class, 'autocompleteCases']);
 
 Route::controller(MaterialController::class)->group(function () {
     Route::get('materials', 'showall')->name("materials.showall");

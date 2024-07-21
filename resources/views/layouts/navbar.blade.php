@@ -300,18 +300,22 @@ h2 {
 .details-button:hover {
     background-color: #0056b3;
 }
+a {
+  text-decoration: none;
+}
 
     </style>
 </head>
 <body>
     <div class="navbar">
         <div class="logo">
+            <a href={{ route('index') }}>
             <img src={{asset('logo.png')}} alt="Dental Center Logo">
             <span>Dental Center</span>
+        </a>
         </div>
         <nav>
             <ul>
-                <li><a href={{ route('index') }}>Home</a></li>
                 <li class="dropdown">
                     <a href="javascript:void(0)" class="dropbtn">Patients</a>
                     <div class="dropdown-content">

@@ -89,6 +89,7 @@
             <p><strong>Doctor:</strong> <span id="details-doctor"></span></p>
             <p><strong>Amount:</strong> $<span id="details-amount"></span></p>
             <p><strong>Amount left:</strong> $<span id="details-amount_left"></span></p>
+            <button class="btn" id="add-photo-button">Add Photo</button>
             <button class="btn" onclick="hideDetails()">Close</button>
         </div>
 

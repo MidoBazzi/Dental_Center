@@ -117,6 +117,9 @@ class DentalCaseController extends Controller
         return view('case.add_photo', compact('case'));
     }
 
+
+
+
     public function storePhoto(Request $request, $caseId)
     {
         $request->validate([

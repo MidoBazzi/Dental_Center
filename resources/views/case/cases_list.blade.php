@@ -6,7 +6,7 @@
     <title>Cases List</title>
     <link rel="stylesheet" href="styles.css">
     <script>
-        function showDetails(description, patient, doctor, amount, amount_left) {
+        function showDetails(description, patient, doctor, amount, amount_left, caseId) {
             document.getElementById('details-description').innerText = description;
             document.getElementById('details-patient').innerText = patient;
             document.getElementById('details-doctor').innerText = doctor;
@@ -14,7 +14,12 @@
             document.getElementById('details-amount_left').innerText = amount_left;
             document.getElementById('details-popup').style.display = 'block';
             document.getElementById('overlay').style.display = 'block';
+
+            document.getElementById('add-photo-button').onclick = function() {
+                window.location.href = `/cases/${caseId}/add-photo`;
+            };
         }
+
 
         function hideDetails() {
             document.getElementById('details-popup').style.display = 'none';
@@ -72,7 +77,7 @@
                                 $amount_left += $payment->amount;
                             }
                         @endphp
-                        <button class="details-button" onclick="showDetails('{{ $case->desc }}', '{{ $case->patient->name }}', 'Dr. {{ $case->doctor->name }}', '{{ $case->amount }}', '{{ $case->amount - $amount_left }}')">Details</button>
+                        <button class="details-button" onclick="showDetails('{{ $case->desc }}', '{{ $case->patient->name }}', 'Dr. {{ $case->doctor->name }}', '{{ $case->amount }}', '{{ $case->amount - $amount_left }}', '{{ $case->id }}')">Details</button>
                         <button class="pay-button" onclick="showPayPopup('{{ $case->amount }}', '{{ $case->id }}')">Pay</button>
                         <button class="end-button" onclick="showEndPopup('{{ $case->id }}')">End</button>
                         <button class="view-payments-button" onclick="window.location.href='{{ route('cases.payments', $case->id) }}'">View Payments History</button>

@@ -111,6 +111,34 @@ class DentalCaseController extends Controller
     }
 
 
+    public function showAddPhotoForm($caseId)
+    {
+        $case = Dentalcase::findOrFail($caseId);
+        return view('case.add_photo', compact('case'));
+    }
+
+    public function storePhoto(Request $request, $caseId)
+    {
+        $request->validate([
+            'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'description' => 'required|string|max:255',
+        ]);
+
+        $case = Dentalcase::findOrFail($caseId);
+
+        // Store the photo
+        $path = $request->file('photo')->store('public/photos');
+
+        // Save the photo path and description in the database
+        $case->photos()->create([
+            'path' => $path,
+            'description' => $request->description,
+        ]);
+
+        return redirect()->route('cases.showall')->with('success', 'Photo and description added successfully.');
+    }
+
+
 }
 
 

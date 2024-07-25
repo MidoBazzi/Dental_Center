@@ -23,7 +23,8 @@ Route::controller(DoctorController::class)->group(function () {
     Route::get('doctors', 'showall')->name("doctors.showall");
     Route::get('doctors/add', 'showadd')->name("doctors.showadd");
     Route::post('doctors/store', 'store')->name("doctors.store");
-    Route::get('doctors/payments/{doctor}', 'paymentHistory')->name('doctor.payment_history');
+    Route::get('doctors/payments/{doctor_id}', 'viewPayments')->name('doctor.payment_history');
+    Route::post('doctors/pay', 'create_payment')->name("doctors.pay");
 
 
 

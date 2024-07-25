@@ -62,8 +62,9 @@
             document.getElementById('overlay').style.display = 'none';
         }
 
-        function showPayPopup() {
+        function showPayPopup(doctor_id) {
             document.getElementById('pay-popup').style.display = 'block';
+            document.getElementById('pay-dcotor_id').value = doctor_id;
             document.getElementById('overlay').style.display = 'block';
         }
 
@@ -86,7 +87,7 @@
                     <span>{{ $doctor->name }}</span>
                     <div class="button-group">
                         <button class="details-button" onclick="showDetails('{{ $doctor->name }}', '{{ $doctor->phone_num }}', '{{ $doctor->address }}', '{{ $doctor->age }}', '{{ $doctor->speciality }}', '{{ $doctor->schedule }}', '{{ $doctor->shift_start }}', '{{ $doctor->shift_end }}', '{{ $doctor->cut }}%' ,'{{ $doctor->amount_due }}$')">Details</button>
-                        <button class="pay-button" onclick="showPayPopup()">Pay</button>
+                        <button class="pay-button" onclick="showPayPopup('{{$doctor->id}}')">Pay</button>
                         <button class="view-payment-button" onclick="window.location.href='{{ route('doctor.payment_history', $doctor->id) }}'">View Payment History</button>
                     </div>
                 </li>
@@ -108,12 +109,18 @@
         </div>
         <div id="pay-popup" class="popup">
             <h2>Pay</h2>
+            <form method="POST" action="{{route('doctors.pay')}}">
+                @csrf
             <div class="form-group">
                 <label for="amount">Amount:</label>
                 <input type="number" id="amount" name="amount" min="0" step="0.01">
+                <input type="hidden" id="pay-dcotor_id" name="doctor_id" value="">
+
             </div>
-            <button class="btn" onclick="hidePayPopup()">Pay</button>
+            <button class="btn" type="submit">Pay</button>
+            </form>
         </div>
+
         <div id="overlay" class="overlay" onclick="hideDetails(); hidePayPopup();"></div>
     </main>
 </body>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Doctor;
 use App\Models\Appointment;
+use App\Models\DoctorPayment;
 use Illuminate\Support\Carbon;
 
 class DoctorController extends Controller
@@ -38,6 +39,45 @@ class DoctorController extends Controller
 
         return redirect(route('doctors.showall'));
     }
+
+
+    public function create_payment(Request  $request)
+    {
+        $validatedData = $request->validate([
+        'doctor_id' => ['required', 'integer', 'exists:doctors,id'],
+        'amount' => ['required', 'integer', 'min:1'],
+        ]);
+
+        $doctor = Doctor::find($request->doctor_id);
+        $amount_due = $doctor->amount_due;
+        if($request->amount > $amount_due){
+            return redirect()->back()->withErrors(['error' => 'The total amount paid is more than the amount due for the dcotor.']);
+        }
+        $now = Carbon::now();
+        $payment = new DoctorPayment;
+        $payment->date = $now;
+        $payment->doctor_id = $request->doctor_id;
+        $payment->amount = $request->amount;
+
+
+
+
+        $doctor->amount_due -= $request->amount ;
+
+        $doctor->save();
+        $payment->save();
+
+        return redirect(route('doctors.showall'));
+    }
+
+    public function viewPayments($doctor_id){
+        $doctor = Doctor::findorfail($doctor_id);
+        $payments = $doctor->doctorpayments;
+
+        return view('doctor.doctor_payment_history',compact('payments','doctor'));
+
+    }
+
 
     public function availableDates(Request $request) {
         $doctorId = $request->get('doctor_id');

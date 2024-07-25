@@ -77,7 +77,7 @@
     </header>
 
     <main class="container">
-        <h2>Payment History for Doctor: </h2>
+        <h2>Payment History for Doctor: {{$doctor->name}}</h2>
         <section id="payment-history">
             <table>
                 <thead>
@@ -87,19 +87,14 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($payments as $payment )
+
                     <tr>
-                        <td>2024-06-01</td>
-                        <td>$300.00</td>
+                        <td>{{$payment->date}}</td>
+                        <td>${{$payment->amount}}</td>
                     </tr>
-                    <tr>
-                        <td>2024-06-10</td>
-                        <td>$500.00</td>
-                    </tr>
-                    <tr>
-                        <td>2024-06-20</td>
-                        <td>$250.00</td>
-                    </tr>
-                    <!-- Add more dummy payments here -->
+                    @endforeach
+
                 </tbody>
             </table>
         </section>

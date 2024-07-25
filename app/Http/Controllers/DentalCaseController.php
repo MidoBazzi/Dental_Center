@@ -62,7 +62,7 @@ class DentalCaseController extends Controller
 
 
         $doctor = $case->doctor;
-        $doctor->amount_due = $request->amount * ($doctor->cut / 100);
+        $doctor->amount_due += ($request->amount * ($doctor->cut / 100));
 
         $doctor->save();
         $payment->save();

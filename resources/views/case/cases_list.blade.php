@@ -6,12 +6,13 @@
     <title>Cases List</title>
     <link rel="stylesheet" href="styles.css">
     <script>
-        function showDetails(description, patient, doctor, amount, amount_left, caseId) {
+        function showDetails(description, patient, doctor, amount, amount_left, caseId,pictures) {
             document.getElementById('details-description').innerText = description;
             document.getElementById('details-patient').innerText = patient;
             document.getElementById('details-doctor').innerText = doctor;
             document.getElementById('details-amount').innerText = amount;
             document.getElementById('details-amount_left').innerText = amount_left;
+            document.getElementById('details-pictures').innerHTML  = pictures;
             document.getElementById('details-popup').style.display = 'block';
             document.getElementById('overlay').style.display = 'block';
 
@@ -76,8 +77,12 @@
                             foreach ($case->payments as $payment) {
                                 $amount_left += $payment->amount;
                             }
+                            $pictures= '';
+                            foreach ($case->patientdatas as $photo){
+                                $pictures .= "<a href='http://127.0.0.1:8000/images/{$photo->picture}'> {$photo->desc} </a>";                        }
+
                         @endphp
-                        <button class="details-button" onclick="showDetails('{{ $case->desc }}', '{{ $case->patient->name }}', 'Dr. {{ $case->doctor->name }}', '{{ $case->amount }}', '{{ $case->amount - $amount_left }}', '{{ $case->id }}')">Details</button>
+                        <button class="details-button" onclick="showDetails('{{ $case->desc }}', '{{ $case->patient->name }}', 'Dr. {{ $case->doctor->name }}', '{{ $case->amount }}', '{{ $case->amount - $amount_left }}', '{{ $case->id }}', `{!! addslashes($pictures) !!}` )">Details</button>
                         <button class="pay-button" onclick="showPayPopup('{{ $case->amount }}', '{{ $case->id }}')">Pay</button>
                         <button class="end-button" onclick="showEndPopup('{{ $case->id }}')">End</button>
                         <button class="view-payments-button" onclick="window.location.href='{{ route('cases.payments', $case->id) }}'">View Payments History</button>
@@ -94,6 +99,8 @@
             <p><strong>Doctor:</strong> <span id="details-doctor"></span></p>
             <p><strong>Amount:</strong> $<span id="details-amount"></span></p>
             <p><strong>Amount left:</strong> $<span id="details-amount_left"></span></p>
+            <p><strong>pictures:</strong> <span id="details-pictures"></span></p>
+
             <button class="btn" id="add-photo-button">Add Photo</button>
             <button class="btn" onclick="hideDetails()">Close</button>
         </div>

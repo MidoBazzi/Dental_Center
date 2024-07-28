@@ -42,19 +42,23 @@
         <section id="appointment-list">
             <h3 onclick="toggleList('today-list')">Today's Appointments</h3>
             <ul id="today-list" style="display: none;">
+                @foreach ($today_appointments as $today_appointment)
+
                 <li>
-                    Appointment 2
-                    <button class="btn" onclick="showDetails('2024-06-06', '10:00 AM', 'Dr. Jane Smith', 'John Doe', 'Cavity')">Details</button>
+                    Appointment {{$today_appointment->time}}
+                    <button class="btn" onclick="showDetails('{{$today_appointment->date}}', '{{$today_appointment->time}}', '{{$today_appointment->doctor->name}}', '{{$today_appointment->patient->name}}', '{{$today_appointment->dentalcase->desc}}')">Details</button>
                 </li>
-                <!-- Add more dummy appointments for today here -->
+                @endforeach
             </ul>
             <h3 onclick="toggleList('future-list')">Future Appointments</h3>
             <ul id="future-list" style="display: none;">
+                @foreach ($future_appointments as $future_appointment)
+
                 <li>
-                    Appointment 3
-                    <button class="btn" onclick="showDetails('2024-06-07', '11:00 AM', 'Dr. Jane Smith', 'John Doe', 'Consultation')">Details</button>
+                    Appointment {{$today_appointment->date}}
+                    <button class="btn" onclick="showDetails('{{$future_appointment->date}}', '{{$future_appointment->time}}', '{{$future_appointment->doctor->name}}', '{{$future_appointment->patient->name}}', '{{$future_appointment->dentalcase->desc}}')">Details</button>
                 </li>
-                <!-- Add more dummy appointments for future here -->
+                @endforeach
             </ul>
         </section>
         <div id="details-popup" class="popup">

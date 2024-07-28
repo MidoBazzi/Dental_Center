@@ -51,7 +51,7 @@ class DoctorController extends Controller
         $doctor = Doctor::find($request->doctor_id);
         $amount_due = $doctor->amount_due;
         if($request->amount > $amount_due){
-            return redirect()->back()->withErrors(['error' => 'The total amount paid is more than the amount due for the dcotor.']);
+            return redirect()->back()->withErrors(['error' => 'The amount paid is more than the amount due for the dcotor.']);
         }
         $now = Carbon::now();
         $payment = new DoctorPayment;
@@ -83,7 +83,7 @@ class DoctorController extends Controller
         $doctorId = $request->get('doctor_id');
         $doctor = Doctor::find($doctorId);
 
-        $availableDays = explode(',', $doctor->schedule); // 'Monday,Tuesday,Wednesday' etc.
+        $availableDays = explode(',', $doctor->schedule);
         $next7Days = [];
 
         for ($i = 0; $i < 7; $i++) {

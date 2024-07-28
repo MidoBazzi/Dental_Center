@@ -46,8 +46,8 @@ Route::controller(DentalCaseController::class)->group(function () {
     Route::post('cases/pay', 'create_payment')->name("cases.pay");
     Route::post('cases/end', 'endcase')->name("cases.end");
     Route::get('/cases/payments/{case_id}', 'viewPayments')->name('cases.payments');
-    Route::get('/cases/{caseId}/add-photo', [DentalCaseController::class, 'showAddPhotoForm'])->name('cases.addPhoto');
-    Route::post('/cases/{caseId}/add-photo', [DentalCaseController::class, 'storePhoto'])->name('cases.storePhoto');
+    Route::get('/cases/{caseId}/add-photo',  'showAddPhotoForm')->name('cases.addPhoto');
+    Route::post('/cases/{caseId}/add-photo',  'storePhoto')->name('cases.storePhoto');
 
 
 

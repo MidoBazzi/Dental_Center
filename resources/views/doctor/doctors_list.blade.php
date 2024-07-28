@@ -84,7 +84,15 @@
             <ul>
                 @foreach ($doctors as $index => $doctor)
                 <li>
-                    <span>{{ $doctor->name }}</span>
+                    <span>{{ $doctor->name }}@if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif</span>
                     <div class="button-group">
                         <button class="details-button" onclick="showDetails('{{ $doctor->name }}', '{{ $doctor->phone_num }}', '{{ $doctor->address }}', '{{ $doctor->age }}', '{{ $doctor->speciality }}', '{{ $doctor->schedule }}', '{{ $doctor->shift_start }}', '{{ $doctor->shift_end }}', '{{ $doctor->cut }}%' ,'{{ $doctor->amount_due }}$')">Details</button>
                         <button class="pay-button" onclick="showPayPopup('{{$doctor->id}}')">Pay</button>

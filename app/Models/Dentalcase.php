@@ -30,7 +30,7 @@ class Dentalcase extends Model
     }
 
 
-    public function patientdata(): hasMany
+    public function patientdatas(): hasMany
     {
         return $this->hasMany(PatientData::class);
     }

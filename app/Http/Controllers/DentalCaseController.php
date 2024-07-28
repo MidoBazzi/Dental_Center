@@ -9,11 +9,13 @@ use App\Models\Patient;
 use App\Models\Payment;
 use App\Http\Requests\AddCaseRequest;
 use Illuminate\Support\Carbon;
+use App\Models\PatientData;
+
 
 class DentalCaseController extends Controller
 {
     public function showall(){
-        $cases = Dentalcase::with('doctor', 'patient','payments')->get()->where('status',false);
+        $cases = Dentalcase::with('doctor', 'patient','payments','patientdatas')->get()->where('status',false);
 
         return view('case.cases_list',compact('cases'));
     }
@@ -127,15 +129,18 @@ class DentalCaseController extends Controller
             'description' => 'required|string|max:255',
         ]);
 
-        $case = Dentalcase::findOrFail($caseId);
+        $case = Dentalcase::with('patient')->findOrFail($caseId);
 
-        // Store the photo
-        $path = $request->file('photo')->store('public/photos');
+        $now = Carbon::now();
 
-        // Save the photo path and description in the database
-        $case->photos()->create([
-            'path' => $path,
-            'description' => $request->description,
+        $path = $request->file('photo')->store('/'.$case->patient->name,'image');
+
+        $data = PatientData::create([
+            'picture' => $path,
+            'desc' => $request->description,
+            'dentalcase_id'=>$caseId,
+            'patient_id'=>$case->patient->id,
+            'date'=>$now
         ]);
 
         return redirect()->route('cases.showall')->with('success', 'Photo and description added successfully.');
